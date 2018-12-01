@@ -4,7 +4,7 @@ import './App.css';
 
 const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 
-const api_key='gSatUV4X1akzffYzqrlAiMnpNaS3YQgt';
+const api_key=process.env.REACT_APP_GIPHY;
 
 var recognition = new SpeechRecognition();
 
@@ -27,11 +27,14 @@ class App extends Component {
 
 soundhandle(){
 
-  recognition.start();
 
+  recognition.start();
+  // console.log('started');
     recognition.onresult = function(event) {
         let words=event.results[0][0].transcript.split(' ');
-
+        // console.log(words[0]);
+        // console.log(words[1]);
+        // console.log(words[2]);
         this.setState({
           leftside: !!words[0]?words[0]: "Didnt hear you",
           rightside: !!words[1]?words[1]: "Didnt hear you"
