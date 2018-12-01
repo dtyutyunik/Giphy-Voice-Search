@@ -31,14 +31,12 @@ soundhandle(){
 
     recognition.onresult = function(event) {
         let words=event.results[0][0].transcript.split(' ');
-        console.log(words);
 
         this.setState({
-          leftside: words[0],
-          rightside: words[1],
+          leftside: !!words[0]?words[0]: "Didnt hear you",
+          rightside: !!words[1]?words[1]: "Didnt hear you"
         })
             this.generateImages(this.state.leftside,this.state.rightside);
-        // this.generateImages(words[0],words[1]);
 
     }.bind(this); //needs to be bind to work, otherwise it says it's not a function
 
@@ -56,23 +54,15 @@ soundhandle(){
 
 async generateImages(left,right){
 
-let rightInfopic, leftInfopic;
-  const leftInfo= await axios.get(`https://api.giphy.com/v1/gifs/search?api_key=${api_key}&q=${left}&limit=1&offset=0&rating=G&lang=en`);
 
-  if(typeof(leftInfo)=='object'){
-    leftInfopic= 'No search result';
-  }
-  else{
-    leftInfopic=leftInfo.data.data[0].images.original.url;
-  }
+  const leftInfo= await axios.get(`https://api.giphy.com/v1/gifs/search?api_key=${api_key}&q=${left}&limit=2&offset=0&rating=G&lang=en`);
+
+  let leftInfopic=leftInfo.data.data[0].images.original.url;
 
   const rightInfo= await axios.get(`https://api.giphy.com/v1/gifs/search?api_key=${api_key}&q=${right}&limit=1&offset=0&rating=G&lang=en`);
 
-  if(typeof(rightInfo)===typeof({})){
-    rightInfopic='No search result';
-  }else{
-      rightInfopic=rightInfo.data.data[0].images.original.url;
-  }
+  let rightInfopic=rightInfo.data.data[0].images.original.url;
+
 
 
   this.setState({
