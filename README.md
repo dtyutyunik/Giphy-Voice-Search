@@ -9,4 +9,4 @@
 [GIPHY API](https://developers.giphy.com/ "GIPHY API")
 
 ###Hosted on
-[Hosted site](https://giphy-voice.surge.sh/ "Hosted On")
+[https://giphy-voice.surge.sh](https://giphy-voice.surge.sh/ "Hosted On")
