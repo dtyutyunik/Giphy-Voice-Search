@@ -1,6 +1,5 @@
 .App {
   text-align: center;
-
 }
 
 body{
@@ -12,13 +11,22 @@ body{
   display: grid;
   grid-template-areas:
   '. title .'
-  '. word .'
-  'left mic right';
+  '. word .';
+  /* 'left mic right'; */
   margin: auto;
   /* border: 2px solid red; */
 
 }
-
+p{
+  text-transform: capitalize;
+}
+.bottom{
+  /* border: 1px solid green; */
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
 .title{
   grid-area: title;
 }

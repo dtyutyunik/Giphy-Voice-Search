@@ -61,6 +61,7 @@ async generateImages(left,right){
   const leftInfo= await axios.get(`https://api.giphy.com/v1/gifs/search?api_key=${api_key}&q=${left}&limit=2&offset=0&rating=G&lang=en`);
 
   let leftInfopic=leftInfo.data.data[0].images.original.url;
+  console.log(leftInfo.data.data[0].images.original.url)
 
   const rightInfo= await axios.get(`https://api.giphy.com/v1/gifs/search?api_key=${api_key}&q=${right}&limit=1&offset=0&rating=G&lang=en`);
 
@@ -77,6 +78,7 @@ async generateImages(left,right){
 
 
   render() {
+    console.log(api_key)
     return (
       <div className="App">
 
@@ -85,18 +87,22 @@ async generateImages(left,right){
 
         <h1 className='title'>Welcome to the world of Giphy</h1>
           <h2 className='word'>Click the microphone & say 2 words</h2>
+          </div>
+          <div className='bottom'>
           <div className="left">
             <p>{this.state.leftside}</p>
-            <img className="pics" src={this.state.leftImage} alt='left pic'/>
+            {this.state.leftImage.length>1?<img className="pics" src={this.state.leftImage} alt='left pic'/>:null}
+
           </div>
-        <img id="microphone" onClick={()=>this.soundhandle()} src={"http://pluspng.com/img-png/microphone-png-microphone-png-transparent-image-1104.png"} alt='microphone'/>
+        <img id="microphone" onClick={()=>this.soundhandle()} src={require("./microphone.png")} alt='microphone'/>
 
       <div className="right">
           <p>{this.state.rightside}</p>
-          <img className="pics" src={this.state.rightImage} alt='right pic'/>
+          {this.state.rightImage.length>1===true?<img className="pics" src={this.state.rightImage} alt='right pic'/>:null}
         </div>
+    </div>
         </div>
-      </div>
+
     );
   }
 }
