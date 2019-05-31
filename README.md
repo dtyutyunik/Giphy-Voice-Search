@@ -1,5 +1,8 @@
 # Giphy-Voice-Search
 
+Leveraged Web Speech API to make voice controlled axios calls to Giphy API
+Generated the most popular search giphy that accurately pinpoints the users search
+
 ## API's Used
 
 ### SpeechRecognition API
